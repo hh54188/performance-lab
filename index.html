@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		* {
+			padding: 0;
+			margin: 0;
+		}
+		button {
+			position: fixed;
+			top: 10px;
+			left: 10px;
+			z-index: 99999;
+			background: red;
+			padding: 10px 30px;
+		}
+	</style>
+</head>
+<body style="filter:blur(10px);">
+<button>Toggle</button>
+<script type="text/javascript">
+	var body = document.querySelector('body');
+	var showBlur = true;
+	document.querySelector('button').addEventListener('click', function () {
+		if (showBlur) {
+			body.style.filter = ''
+		} else {
+			body.style.filter = 'blur(10px)';
+		}
+		showBlur = !showBlur;
+	});
+
+	var viewportWidth = window.innerWidth;
+	var viewportHeight = window.innerHeight;
+	var boxHeight = 100;
+	var boxWidth = 100;
+	
+	var boxes = [];
+	function getRandomColor() {
+	    var letters = '0123456789ABCDEF';
+	    var color = '#';
+	    for (var i = 0; i < 6; i++ ) {
+	        color += letters[Math.floor(Math.random() * 16)];
+	    }
+	    return color;
+	}
+
+	function randomIntInRange(min, max) {
+		return Math.floor(Math.random() * (max - min) + min);
+	}
+
+	function generateBoxes(count) {
+		var boxes = []
+		for (var i = 0; i < count; i++) {
+			var box = document.createElement('box');
+			box.style.width = boxWidth + 'px';
+			box.style.height = boxHeight + 'px';
+			box.style.position = 'absolute';
+			box.style.top = randomIntInRange(0, viewportHeight) + 'px';
+			box.style.left = randomIntInRange(0, viewportWidth) + 'px';
+			box.style.backgroundColor = getRandomColor();
+			body.appendChild(box);
+			boxes.push(box);
+		}
+		return boxes
+	}
+
+	boxes = generateBoxes(600);
+
+	setInterval(function () {
+		boxes.forEach(function (box) {
+			box.style.backgroundColor = getRandomColor();
+		})
+	}, 300);
+</script>
+</body>
+</html>
