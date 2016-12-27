@@ -1,0 +1,23 @@
+{
+  "name": "performance-lab",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hh54188/performance-lab.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hh54188/performance-lab/issues"
+  },
+  "homepage": "https://github.com/hh54188/performance-lab#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
