@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta name="viewport" content="width=device-width" charset="utf-8">
+	<style type="text/css">
+		#target {
+			background: red;
+			width: 200px;
+			height: 200px;
+		}
+	</style>
+</head>
+<body>
+<button>Run</button>
+<div id="target"></div>
+<script type="text/javascript">
+	var target = document.querySelector('#target');
+	var button = document.querySelector('button');
+
+	function renderColor() {
+		requestAnimationFrame(function () {
+			target.style.backgroundColor = getRandomColor();
+			console.log('rAF');
+			renderColor();
+		});
+	}
+
+	function renderColorByTimeout() {
+		setTimeout(function () {
+			target.style.backgroundColor = getRandomColor();
+			console.log('rAF');
+			renderColorByTimeout();
+		}, 17);		
+	}
+
+	// renderColor();
+	renderColorByTimeout()
+
+	function getRandomColor() {
+	    var letters = '0123456789ABCDEF';
+	    var color = '#';
+	    for (var i = 0; i < 6; i++ ) {
+	        color += letters[Math.floor(Math.random() * 16)];
+	    }
+	    return color;
+	}
+
+	function jank(seconds) {
+		var startTime = performance.now();
+		var continueRun = true;
+		while(continueRun) {
+			if (performance.now() - startTime > seconds * 1000) {
+				continueRun = false;	
+			}
+		}
+		return;
+	}
+
+	button.onclick = function () {
+		jank(5);
+	}
+</script>
+</body>
+</html>
